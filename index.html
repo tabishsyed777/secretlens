@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="SecretLens finds likely credentials in code and text without uploading your files." />
+    <meta name="theme-color" content="#111019" />
+    <title>SecretLens — Find what should not ship.</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="shell">
+      <header class="topbar">
+        <a class="brand" href="#top"><span class="brand-mark">⌁</span><span>SECRET<span>LENS</span></span></a>
+        <div class="top-meta"><span class="pulse"></span> LOCAL SCAN <i></i> PROJECT 02</div>
+      </header>
+
+      <main id="top">
+        <section class="hero">
+          <div>
+            <p class="kicker">DEFENSIVE DEVELOPER SECURITY / 02</p>
+            <h1>Find what<br /><em>should not ship.</em></h1>
+            <p class="lede">A private scanner for spotting credentials hiding in source files, config, and notes before they reach a repository.</p>
+            <div class="hero-note"><span>01</span><p>Patterns are matched locally. Values are redacted in the report.</p></div>
+          </div>
+          <div class="lens-graphic" aria-hidden="true"><div class="lens-ring"></div><div class="lens-core"><span>SCAN</span><b>↘</b></div><span class="graphic-label label-a">CREDENTIAL</span><span class="graphic-label label-b">PRIVATE</span><span class="graphic-label label-c">REDACTED</span></div>
+        </section>
+
+        <section class="scan-grid">
+          <div class="panel input-panel">
+            <div class="panel-head"><div><p class="kicker">01 / MATERIAL</p><h2>Inspect your material</h2></div><span class="micro">NO UPLOADS</span></div>
+            <p class="intro">Drop source files here, or paste a snippet. SecretLens reads them in this tab and never sends them to a server.</p>
+            <label class="drop" id="drop" for="files" tabindex="0"><input id="files" type="file" multiple accept=".env,.txt,.js,.ts,.jsx,.tsx,.py,.go,.java,.rb,.php,.json,.yaml,.yml,.toml,.ini,.cfg,.conf,.md,.sh" /><span class="drop-icon">⌑</span><strong>Drop files to scan</strong><span>or <u>choose from your computer</u></span><small id="fileList">No files loaded</small></label>
+            <div class="paste-label"><span>Or paste text</span><button id="sample" type="button">Load synthetic sample ↗</button></div>
+            <textarea id="source" spellcheck="false" placeholder="Paste a config file, code snippet, or environment file here…"></textarea>
+            <button class="scan-button" id="scan" type="button"><span>Run secret scan</span><b>→</b></button>
+            <p class="privacy"><span>◉</span> Everything is processed in this browser.</p>
+          </div>
+
+          <aside class="panel rules-panel">
+            <div class="panel-head"><div><p class="kicker">02 / COVERAGE</p><h2>What we look for</h2></div><span class="micro">PATTERNS</span></div>
+            <div class="coverage-list"><div><span class="rule-dot high"></span><p><strong>Private keys</strong><small>PEM blocks and key headers</small></p><b>CRITICAL</b></div><div><span class="rule-dot high"></span><p><strong>Cloud credentials</strong><small>AWS access keys and secret pairs</small></p><b>HIGH</b></div><div><span class="rule-dot medium"></span><p><strong>Source tokens</strong><small>GitHub, Slack, JWT patterns</small></p><b>HIGH</b></div><div><span class="rule-dot low"></span><p><strong>Generic secrets</strong><small>Named keys with long values</small></p><b>REVIEW</b></div></div>
+            <div class="rule-footer"><span class="rule-count">6</span><p>focused detectors<br /><small>with safe redaction</small></p></div>
+          </aside>
+        </section>
+
+        <section class="results" id="results" aria-live="polite">
+          <div class="result-head"><div><p class="kicker">03 / FINDINGS</p><h2>Exposure report</h2></div><div class="result-actions"><span id="status">Waiting for material</span><button id="download" type="button" disabled>↓ Export JSON</button></div></div>
+          <div class="summary-grid"><div class="summary-card main"><span>SECRETS FOUND</span><strong id="found">—</strong><small id="foundHint">Run a scan to see findings</small></div><div class="summary-card"><span>FILES READ</span><strong id="filesRead">—</strong><small>Local input only</small></div><div class="summary-card"><span>CRITICAL</span><strong id="critical">—</strong><small>Immediate rotation advised</small></div><div class="summary-card"><span>HIGH / REVIEW</span><strong id="other">—</strong><small>Investigate and remediate</small></div></div>
+          <div class="report-grid"><div class="panel findings-panel"><div class="subhead"><h3>Findings</h3><span id="findingCount">0 findings</span></div><div id="findings" class="findings"><div class="empty"><span>⌁</span><strong>No scan yet</strong><p>Add a file or paste text to see redacted findings here.</p></div></div></div><div class="panel guide-panel"><div class="subhead"><h3>Remediation path</h3><span>AFTER A HIT</span></div><ol><li><span>01</span><p><strong>Revoke or rotate</strong> the credential with its provider.</p></li><li><span>02</span><p><strong>Remove from history</strong> if it has entered version control.</p></li><li><span>03</span><p><strong>Move to a secret manager</strong> and inject it at runtime.</p></li></ol><p class="disclaimer">Matches are signals for review, not proof that a credential is active. Always validate safely with the owning provider.</p></div></div>
+        </section>
+      </main>
+      <footer><span><b>SL</b> SECRETLENS / PROJECT TWO</span><span>Built for authorized code review.</span><a href="https://github.com/">GITHUB ↗</a></footer>
+    </div>
+    <script src="app.js"></script>
+  </body>
+</html>
